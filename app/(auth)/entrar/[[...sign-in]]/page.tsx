@@ -1,9 +1,11 @@
 import { SignIn } from "@clerk/nextjs";
 
+import { PageLayout } from "@/components/PageLayout";
+
 export default function Page() {
   return (
-    <div className="flex h-[calc(100vh-5rem)] items-center justify-center">
+    <PageLayout className="flex h-[calc(100vh-5rem)] items-center justify-center">
       <SignIn />
-    </div>
+    </PageLayout>
   );
 }

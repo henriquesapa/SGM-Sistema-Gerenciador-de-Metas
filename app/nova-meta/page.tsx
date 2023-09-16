@@ -1,7 +1,9 @@
+import { PageLayout } from "@/components/PageLayout";
+
 export default function Page() {
   return (
-    <main>
+    <PageLayout>
       <h1>Nova Meta</h1>
-    </main>
+    </PageLayout>
   );
 }

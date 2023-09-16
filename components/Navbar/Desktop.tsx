@@ -23,8 +23,10 @@ export function HeaderDesktop() {
   return (
     <header className="sticky top-0 z-50 hidden h-20 w-full bg-white px-8 py-2 shadow-sm md:flex">
       <div className="container mx-auto flex items-center justify-between">
-        <div className="flex items-center space-x-32">
-          <h1>SGM</h1>
+        <h1 className="text-4xl font-bold text-primary underline underline-offset-8">
+          SGM
+        </h1>
+        <div className="flex items-center">
           <Content />
         </div>
 

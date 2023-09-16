@@ -1,7 +1,9 @@
+import { PageLayout } from "@/components/PageLayout";
+
 export default function Page() {
   return (
-    <main>
+    <PageLayout>
       <h1>Minhas Metas</h1>
-    </main>
+    </PageLayout>
   );
 }
