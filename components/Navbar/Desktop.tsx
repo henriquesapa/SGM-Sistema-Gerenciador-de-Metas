@@ -29,7 +29,6 @@ export function HeaderDesktop() {
         <div className="flex items-center">
           <Content />
         </div>
-
         {isSignedIn ? (
           <UserButton afterSignOutUrl="/" />
         ) : (
