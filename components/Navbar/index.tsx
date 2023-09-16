@@ -1,11 +1,12 @@
+"use client";
 import { HeaderDesktop } from "./Desktop";
 import { HeaderMobile } from "./Mobile";
 
-export function Header() {
-	return (
-		<>
-			<HeaderDesktop />
-			<HeaderMobile />
-		</>
-	);
+export function Navbar() {
+  return (
+    <>
+      <HeaderDesktop />
+      <HeaderMobile />
+    </>
+  );
 }
