@@ -1,1 +1,18 @@
 
+(PO)
+Product Owner: 
+Equipe: 
+(SM)
+Scrum Master: Henrique Silva Aparecido
+
+	Desenvolvedor 1: 
+	Habilidades:
+	Experiências:
+
+	Desenvolvedor 2: 
+	Habilidades:
+	Experiências:
+
+	Desenvolvedor 3:
+	Habilidades:
+	Experiências:
