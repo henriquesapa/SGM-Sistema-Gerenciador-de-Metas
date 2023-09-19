@@ -9,9 +9,14 @@ Scrum Master: Henrique Silva Aparecido
 	Habilidades:
 	Experiências:
 
-	Desenvolvedor 2: 
-	Habilidades:
+	Desenvolvedor 2: Thiago Fernandes Coucello da Fonseca
+	Habilidades: JavaScript, TypeScript, Clipper, Python, Matlab, React. 
 	Experiências:
+		- Estagiário em Desenvolvimento de Software (2020 - );
+		- Projetos de Iniciação Científica:
+			* 2020 - 2021: Detecção e medição automática de peixes com base em imagens;
+			* 2021 - 2022: Diagnóstico de COVID-19 com base em imagens de pulmão utilizando Inteligência Artificial;
+			* 2022 - 2023: Análise do impacto do tamanho das regiões de interesse no diagnóstico de fraturas por fragilidade utilizando Inteligência Artificial;
 
 	Desenvolvedor 3:
 	Habilidades:
