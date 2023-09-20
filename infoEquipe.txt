@@ -5,9 +5,15 @@ Equipe:
 (SM)
 Scrum Master: Henrique Silva Aparecido
 
-	Desenvolvedor 1: 
-	Habilidades:
+	Desenvolvedor 1: Ivo Henrique Provensi Vieira
+	Habilidades: JavaScript, TypeScript, Python, DevOps, React (Native)
 	Experiências:
+		- Projetos de Iniciação Cientifica e Pesquisa
+			* 2020 - 2022: Desenvolvimento de aplicativo para smartphone para detecção e medição de peixes
+			* 2021 - 2022: DERUN - Pesquisa e desenvolvimento de sistema para definição de rotas eficientes em redes urbanas
+			* 2022 - 2022: PAP-UNIVERSAL 005/2021 - Prospecção em larga escala de biomoléculas da biodiversidade amazônica contra alvos enzimáticos de doenças tropicais.
+			* 2021 - 2023: VOGDI-008-FIO-21 - PROEP Fiocruz Rondônia - Prospecção de inibidores naturais e sintéticos contra alvos enzimáticos de Plasmodium falciparum e vivax através da combinação de experimentos in silico e in vitro
+			* 2023 - Atual: DIREX-002-FIO-23 - FORTALECIMENTO DAS AÇÕES DE PESQUISA E VIGILÂNCIA DE DOENÇAS TROPICAIS NA REGIÃO AMAZÔNICA
 
 	Desenvolvedor 2: Thiago Fernandes Coucello da Fonseca
 	Habilidades: JavaScript, TypeScript, Clipper, Python, Matlab, React. 
