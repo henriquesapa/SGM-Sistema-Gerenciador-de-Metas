@@ -14,27 +14,10 @@ generator erd {
   provider = "prisma-erd-generator"
 }
 
-model Objective {
-  id String @id @default(uuid())
-
-  KeyResult KeyResult[]
-
-  @@map("objectives")
-}
-
-
-model KeyResult {
-  id          String @id @default(uuid())
-  objectiveId String @map("objective_id")
-
-  objective Objective @relation(fields: [objectiveId], references: [id])
-
-  @@map("key_results")
-}
-
 model Meta {
   id_meta Int @id @default(autoincrement())
-  descricao String
+  descricao String 
+  id_usuario String
   Metas_Tarefa Tarefa[] 
 }
 
@@ -43,23 +26,7 @@ model Tarefa {
   descricao String
   status String
   id_meta Int @unique
-  Tarefa_Meta Meta @relation(fields:[id_meta],references:[id_meta])
-  Tarefa_Historico Historico?
-}
-
-model Historico{
-  id_historico Int @id @default(autoincrement())
-  inicio DateTime 
+  inicio DateTime
   fim DateTime 
-  id_tarefa Int @unique
-  id_usuario Int @unique
-  Historico_Tarefa Tarefa @relation(fields:[id_tarefa],references:[id_tarefa])
-  Historico_Usuario Usuario @relation(fields: [id_usuario],references: [id_usuario])
-}
-
-model Usuario{
-  id_usuario Int @id @default(autoincrement())
-  nome String
-  email String
-  Historicos Historico[]
+  Tarefa_Meta Meta @relation(fields:[id_meta],references:[id_meta])
 }
