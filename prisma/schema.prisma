@@ -52,5 +52,14 @@ model Historico{
   inicio DateTime 
   fim DateTime 
   id_tarefa Int @unique
+  id_usuario Int @unique
   Historico_Tarefa Tarefa @relation(fields:[id_tarefa],references:[id_tarefa])
+  Historico_Usuario Usuario @relation(fields: [id_usuario],references: [id_usuario])
+}
+
+model Usuario{
+  id_usuario Int @id @default(autoincrement())
+  nome String
+  email String
+  Historicos Historico[]
 }

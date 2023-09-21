@@ -3,8 +3,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { useNavbar } from "@/contexts/Navbar";
-import { cnMerge } from "@/utils/cnMerge";
-import { routeIsActive } from "@/utils/route";
+import { cnMerge } from "@/src/utils/cnMerge";
+import { routeIsActive } from "@/src/utils/route";
 
 type Props = {
   link: NavigationItem;

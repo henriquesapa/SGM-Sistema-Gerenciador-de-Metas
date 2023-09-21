@@ -1,6 +1,6 @@
 import { HTMLAttributes, PropsWithChildren } from "react";
 
-import { cnMerge } from "@/utils/cnMerge";
+import { cnMerge } from "@/src/utils/cnMerge";
 
 type Props = HTMLAttributes<HTMLDivElement>;
 

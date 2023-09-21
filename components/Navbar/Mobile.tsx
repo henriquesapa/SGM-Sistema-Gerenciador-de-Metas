@@ -51,7 +51,7 @@ export function HeaderMobile() {
         {isNavbarOpen ? (
           <LazyMotion
             features={() =>
-              import("@/utils/motionFeatures").then((res) => res.default)
+              import("@/src/utils/motionFeatures").then((res) => res.default)
             }
           >
             <m.aside
