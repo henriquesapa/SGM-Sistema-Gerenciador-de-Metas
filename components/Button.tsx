@@ -5,7 +5,7 @@ import {
 } from "react";
 import { LucideIcon } from "lucide-react";
 
-import { cnMerge } from "@/src/utils/cnMerge";
+import { cnMerge } from "@/utils/cnMerge";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   LeftIcon?: LucideIcon;
