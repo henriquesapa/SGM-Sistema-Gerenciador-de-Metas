@@ -10,23 +10,71 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-generator erd {
-  provider = "prisma-erd-generator"
+generator markdown {
+  provider = "prisma-markdown"
+  title    = "Sistema Gerenciador de Metas"
+  output   = "./ERD.md"
 }
 
+enum Estados {
+  AGUARDANDO
+  EMANDAMENTO
+  CONCLUIDO
+  CANCELADO
+}
+
+
+/// Metas são a unidade principal de trabalho, são criadas e gerenciadas por um usuário.
+///
+/// @namespace Trabalho
+/// @describe Trabalho
 model Meta {
-  id_meta Int @id @default(autoincrement())
-  descricao String 
+  /// Identificador Exclusivo
+  id String @id @default(uuid())
+
+  /// Título da Meta
+  titulo String
+
+  /// Descrição da Meta
+  descricao String?
+
+  /// Usuário a quem a Meta pertence
   id_usuario String
-  Metas_Tarefa Tarefa[] 
+
+  /// Lista de Tarefas inclusas na Meta
+  tarefas Tarefa[]
+
+  @@map("metas")
 }
 
+/// Tarefas são sub-unidades de trabalho presentes dentro de Metas. Uma Meta pode ter inúmeras Tarefas, porém uma Tarefa pode pertencer apenas a uma Meta
+///
+/// @namespace Trabalho
+/// @describe Trabalho
 model Tarefa {
-  id_tarefa Int @id @default(autoincrement())
-  descricao String
-  status String
-  id_meta Int @unique
+  /// Identificador Exclusivo
+  id String @id @default(uuid())
+
+  /// Título descritivo da Tarefa
+  titulo String
+
+  /// Descrição longa do que deve ser cumprido na Tarefa
+  descricao String?
+
+  /// Em que ponto está a execução da Tarefa
+  status Estados @default(AGUARDANDO)
+
+  /// Data e Hora da primeira modificação de Estado (e.g.: `AGUARDANDO` -> `EMANDAMENTO`)
   inicio DateTime
-  fim DateTime 
-  Tarefa_Meta Meta @relation(fields:[id_meta],references:[id_meta])
+
+  /// Data e Hora da conclusão da Tarefa (e.g.: Estado passa para `CONCLUIDO` ou `CANCELADO`)
+  fim DateTime
+
+  /// Identificador Exclusivo da Meta a qual a Tarefa pertence
+  id_meta String
+
+  /// Objeto da Relação
+  meta Meta @relation(fields: [id_meta], references: [id])
+
+  @@map("tarefas")
 }

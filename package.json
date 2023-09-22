@@ -33,6 +33,7 @@
     "@ivopr/eslint-config": "^1.1.0",
     "@mermaid-js/mermaid-cli": "^10.4.0",
     "prisma": "^5.3.1",
-    "prisma-erd-generator": "^1.11.1"
+    "prisma-erd-generator": "^1.11.1",
+    "prisma-markdown": "^1.0.0"
   }
 }
