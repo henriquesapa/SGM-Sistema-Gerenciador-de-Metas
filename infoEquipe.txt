@@ -1,6 +1,6 @@
 
 (PO)
-Product Owner: 
+Product Owner: Daniel Attias de Oliveira
 Equipe: 
 (SM)
 Scrum Master: Henrique Silva Aparecido
