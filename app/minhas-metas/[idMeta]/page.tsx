@@ -23,7 +23,8 @@ export default async function Page({ params }: { params: { idMeta: string } }) {
           <b>Título</b>: {meta.titulo}
         </p>
         <p>
-          <b>Descrição</b>: {meta.descricao}
+          <b>Descrição</b>:{" "}
+          {meta.descricao.length > 0 ? meta.descricao : "Sem Descrição"}
         </p>
       </div>
 

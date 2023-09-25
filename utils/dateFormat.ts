@@ -1,5 +1,3 @@
-"use client";
-
 export function dateFormat(date: Date) {
   return Intl.DateTimeFormat("pt-BR", {
     day: "2-digit",

@@ -2,6 +2,7 @@ import { Tarefa } from "@prisma/client";
 import { AlertTriangle, ArrowRight, Check, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/Button";
+import { dateFormat } from "@/utils/dateFormat";
 
 interface Props {
   tarefas?: Tarefa[];
@@ -34,9 +35,18 @@ export function ListaTarefas({ tarefas }: Props) {
           key={tarefa.id}
         >
           <div className="flex flex-1 flex-col gap-1">
-            <small className="text-xs font-bold">
-              {tarefa.status === "EMANDAMENTO" ? "EM ANDAMENTO" : tarefa.status}
-            </small>
+            <div className="flex items-center gap-2">
+              <small className="text-xs font-bold">
+                {tarefa.status === "EMANDAMENTO"
+                  ? "EM ANDAMENTO"
+                  : tarefa.status}
+              </small>
+              &bull;{" "}
+              <small className="text-xs font-medium">
+                de {dateFormat(new Date(tarefa.inicio))} à{" "}
+                {dateFormat(new Date(tarefa.fim))}
+              </small>
+            </div>
             <h4 className="text-lg font-semibold">{tarefa.titulo}</h4>
             <span>
               {tarefa.descricao ?? "Não há descrição para esta tarefa"}
