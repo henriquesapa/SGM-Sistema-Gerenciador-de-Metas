@@ -43,8 +43,8 @@ export function ListaTarefas({ tarefas }: Props) {
               </small>
               &bull;{" "}
               <small className="text-xs font-medium">
-                de {dateFormat(new Date(tarefa.inicio))} à{" "}
-                {dateFormat(new Date(tarefa.fim))}
+                de <b>{dateFormat(new Date(tarefa.inicio))}</b> à{" "}
+                <b>{dateFormat(new Date(tarefa.fim))}</b>
               </small>
             </div>
             <h4 className="text-lg font-semibold">{tarefa.titulo}</h4>
