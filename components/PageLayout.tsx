@@ -12,7 +12,7 @@ export function PageLayout({
   return (
     <main
       className={cnMerge(
-        "container mx-auto flex flex-1 flex-col space-y-4 py-4 lg:pb-0",
+        "container mx-auto flex w-full max-w-2xl flex-1 flex-col space-y-4 py-4 lg:pb-2",
         className
       )}
       {...rest}

@@ -1,7 +1,11 @@
 "use server";
-import { Meta } from "@prisma/client";
+import { Meta as PMeta, Tarefa } from "@prisma/client";
 
 import { prisma } from "@/lib/prisma";
+
+interface Meta extends PMeta {
+  tarefas?: Tarefa[];
+}
 
 export async function carregarMeta(
   idMeta: string,

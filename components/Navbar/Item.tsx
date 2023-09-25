@@ -20,7 +20,7 @@ export function HeaderItem({ link }: Props) {
       className={cnMerge(
         "flex h-10 items-center px-1 font-medium hover:text-gray-800",
         {
-          "text-gray-800 underline decoration-primary decoration-2 underline-offset-4":
+          "text-gray-800 underline decoration-primary-600 decoration-2 underline-offset-4":
             routeIsActive(pathname ?? "", link),
         }
       )}

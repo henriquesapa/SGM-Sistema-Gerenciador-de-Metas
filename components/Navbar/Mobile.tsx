@@ -29,12 +29,12 @@ export function HeaderMobile() {
       <header className="sticky top-0 z-50 flex h-20 items-center justify-between bg-white px-4 py-2 shadow-sm md:hidden">
         <div className="flex w-full items-center justify-between">
           <Button
-            className="bg-transparent text-primary focus:bg-transparent enabled:hover:bg-transparent"
+            className="bg-transparent text-primary-600 focus:bg-transparent enabled:hover:bg-transparent"
             iconClassName="h-6 w-6"
             LeftIcon={isNavbarOpen ? X : Menu}
             onClick={toggleIsNavbarOpen}
           />
-          <h1 className="text-4xl font-bold text-primary underline underline-offset-8">
+          <h1 className="text-4xl font-bold text-primary-600 underline underline-offset-8">
             SGM
           </h1>
 
