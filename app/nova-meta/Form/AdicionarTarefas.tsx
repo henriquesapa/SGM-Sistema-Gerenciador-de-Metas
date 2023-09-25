@@ -38,7 +38,6 @@ export function AdicionarTarefas({ tarefas, setTarefas }: Props) {
   }
 
   const handleValueChange = (id: string, { startDate, endDate }) => {
-    console.log(id, startDate, endDate);
     atualizarTarefa(id, "inicio", dayjs(startDate).utc().toDate());
     atualizarTarefa(id, "fim", dayjs(endDate).utc().toDate());
   };
@@ -59,7 +58,7 @@ export function AdicionarTarefas({ tarefas, setTarefas }: Props) {
               key={tarefa.id}
             >
               <Input
-                label="Título"
+                label="Título*"
                 onChange={(e) =>
                   atualizarTarefa(tarefa.id, "titulo", e.target.value)
                 }
@@ -67,7 +66,7 @@ export function AdicionarTarefas({ tarefas, setTarefas }: Props) {
                 type="text"
               />
               <Textarea
-                label="Descrição"
+                label="Descrição*"
                 onChange={(e) =>
                   atualizarTarefa(tarefa.id, "descricao", e.target.value)
                 }
@@ -76,7 +75,7 @@ export function AdicionarTarefas({ tarefas, setTarefas }: Props) {
               />
 
               <div className="flex flex-col gap-y-0.5">
-                <label>Período</label>
+                <label>Período*</label>
                 <Datepicker
                   useRange
                   displayFormat="DD [de] MMMM [de] YYYY"

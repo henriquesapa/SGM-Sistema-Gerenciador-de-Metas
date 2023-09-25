@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { useAuth } from "@clerk/nextjs";
 import { Prisma, Tarefa } from "@prisma/client";
 
@@ -32,8 +33,10 @@ export function NovaMetaForm({ criarMeta }: Props) {
 
     if (resultadoCriarMeta === "success") {
       // Mostrar Toast de Sucesso
+      toast("Meta Criada!", { type: "success" });
     } else {
       // Mostrar Toast de Falha
+      toast("Não foi possível criar esta Meta.", { type: "error" });
     }
   };
 
@@ -42,7 +45,7 @@ export function NovaMetaForm({ criarMeta }: Props) {
       className="mx-auto flex w-full max-w-2xl flex-col gap-2"
       onSubmit={handleSubmit(action)}
     >
-      <Input label="Título" {...register("titulo")} />
+      <Input label="Título*" {...register("titulo", { required: true })} />
       <Textarea label="Descrição" {...register("descricao")} />
 
       <AdicionarTarefas tarefas={tarefas} setTarefas={setTarefas} />
