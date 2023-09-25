@@ -27,7 +27,7 @@ export default async function Page({ params }: { params: { idMeta: string } }) {
         </p>
       </div>
 
-      <div>
+      <div className="flex flex-col gap-3">
         <h2 className="text-2xl font-bold text-primary-500">Tarefas</h2>
         <ListaTarefas tarefas={meta?.tarefas} />
       </div>

@@ -1,5 +1,5 @@
 import { Tarefa } from "@prisma/client";
-import { AlertTriangle, Check, Trash2 } from "lucide-react";
+import { AlertTriangle, ArrowRight, Check, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/Button";
 
@@ -9,9 +9,9 @@ interface Props {
 
 const TarefaEsquemaCores = {
   AGUARDANDO: "text-orange-600 bg-orange-100 border-orange-300",
-  EMANDAMENTO: "",
-  CONCLUIDO: "",
-  CANCELADO: "",
+  EMANDAMENTO: "text-cyan-600 bg-cyan-100 border-cyan-300",
+  CONCLUIDO: "text-emerald-600 bg-emerald-100 border-emerald-300",
+  CANCELADO: "text-rose-600 bg-rose-100 border-rose-300",
 };
 
 export function ListaTarefas({ tarefas }: Props) {
@@ -34,14 +34,31 @@ export function ListaTarefas({ tarefas }: Props) {
           key={tarefa.id}
         >
           <div className="flex flex-1 flex-col gap-1">
+            <small className="text-xs font-bold">
+              {tarefa.status === "EMANDAMENTO" ? "EM ANDAMENTO" : tarefa.status}
+            </small>
             <h4 className="text-lg font-semibold">{tarefa.titulo}</h4>
             <span>
               {tarefa.descricao ?? "Não há descrição para esta tarefa"}
             </span>
           </div>
           <div className="flex items-center gap-1">
-            <Button variant="danger" LeftIcon={Trash2} />
-            <Button variant="success" LeftIcon={Check} />
+            <Button
+              disabled={
+                tarefa.status === "CONCLUIDO" || tarefa.status === "CANCELADO"
+              }
+              title="Excluir Tarefa"
+              variant="danger"
+              LeftIcon={Trash2}
+            />
+            <Button
+              disabled={
+                tarefa.status === "CONCLUIDO" || tarefa.status === "CANCELADO"
+              }
+              title="Alterar para o próximo estado"
+              variant="info"
+              LeftIcon={ArrowRight}
+            />
           </div>
         </div>
       ))}
