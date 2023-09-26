@@ -1,6 +1,6 @@
 
 (PO)
-Product Owner: 
+Product Owner: Daniel Attias de Oliveira
 Equipe: 
 (SM)
 Scrum Master: Henrique Silva Aparecido
@@ -24,6 +24,11 @@ Scrum Master: Henrique Silva Aparecido
 			* 2021 - 2022: Diagnóstico de COVID-19 com base em imagens de pulmão utilizando Inteligência Artificial;
 			* 2022 - 2023: Análise do impacto do tamanho das regiões de interesse no diagnóstico de fraturas por fragilidade utilizando Inteligência Artificial;
 
-	Desenvolvedor 3:
-	Habilidades:
+	Desenvolvedor 3: Gianluca Lima Cedaro
+	Habilidades: Python, Matlab, SQL.
 	Experiências:
+		- Estagiário no Tribunal de Justiça do Estado de Rondônia (2021 - 2022);
+		- Monitoria acadêmica nas disciplinas de Estrutura de Dados I e Estrutura de Dados II (2023 - Atual); 
+		- Projetos de Iniciação Cientifica e Pesquisa:
+			* 2021 - 2023: DERUN - Pesquisa e desenvolvimento de sistema para definição de rotas eficientes em redes urbanas;
+			* 2023 - Atual: Softwares Simuladore de Arquitetura de computadores: uma revisão da literatura;
