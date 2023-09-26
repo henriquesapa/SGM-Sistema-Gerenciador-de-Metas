@@ -1,5 +1,5 @@
 "use client";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 import { Tarefa } from "@prisma/client";
 import dayjs from "dayjs";
@@ -17,10 +17,10 @@ dayjs.locale("pt-br");
 
 interface Props {
   tarefas: Tarefa[];
-  setTarefas: Dispatch<SetStateAction<Tarefa[]>>;
+  setTarefas(props: SetStateAction<Tarefa[]>): void;
 }
 
-export function AdicionarTarefas({ tarefas, setTarefas }: Props) {
+export function GerenciarTarefas({ tarefas, setTarefas }: Props) {
   function adicionarTarefaVazia() {
     setTarefas((prevState) => [...prevState, { id: uuidv4() }]);
   }

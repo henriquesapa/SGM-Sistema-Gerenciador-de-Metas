@@ -5,8 +5,8 @@ import { toast } from "react-toastify";
 import { useAuth } from "@clerk/nextjs";
 import { Prisma, Tarefa } from "@prisma/client";
 
-import { AdicionarTarefas } from "@/app/nova-meta/Form/AdicionarTarefas";
 import { Button } from "@/components/Button";
+import { GerenciarTarefas } from "@/components/GerenciarTarefas";
 import { Input } from "@/components/Input";
 import { Textarea } from "@/components/Textarea";
 
@@ -48,7 +48,7 @@ export function NovaMetaForm({ criarMeta }: Props) {
       <Input label="Título*" {...register("titulo", { required: true })} />
       <Textarea label="Descrição" {...register("descricao")} />
 
-      <AdicionarTarefas tarefas={tarefas} setTarefas={setTarefas} />
+      <GerenciarTarefas tarefas={tarefas} setTarefas={setTarefas} />
       <Button disabled={formState.isSubmitting} type="submit">
         Criar Meta
       </Button>
