@@ -1,12 +1,18 @@
+import { ReactElement } from "react";
 import { Pencil } from "lucide-react";
 import Link from "next/link";
 
+import { atualizarTarefa } from "@/app/minhas-metas/[idMeta]/atualizarTarefa";
 import { carregarMeta } from "@/app/minhas-metas/[idMeta]/carregarMeta";
 import { ListaTarefas } from "@/app/minhas-metas/[idMeta]/ListaTarefas";
 import { Button } from "@/components/Button";
 import { PageLayout } from "@/components/PageLayout";
 
-export default async function Page({ params }: { params: { idMeta: string } }) {
+export default async function Page({
+  params,
+}: {
+  params: { idMeta: string };
+}): Promise<ReactElement | null> {
   const meta = await carregarMeta(params.idMeta, true);
 
   if (!meta) {
@@ -39,7 +45,12 @@ export default async function Page({ params }: { params: { idMeta: string } }) {
 
       <div className="flex flex-col gap-3">
         <h2 className="text-2xl font-bold text-primary-500">Tarefas</h2>
-        <ListaTarefas tarefas={meta?.tarefas} />
+        <ListaTarefas
+          atualizarTarefa={atualizarTarefa}
+          carregarMeta={carregarMeta}
+          idMeta={meta.id}
+          tarefas={meta.tarefas ?? []}
+        />
       </div>
     </PageLayout>
   );

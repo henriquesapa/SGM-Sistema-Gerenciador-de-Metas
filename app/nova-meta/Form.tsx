@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useAuth } from "@clerk/nextjs";
 import { Prisma, Tarefa } from "@prisma/client";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/Button";
 import { GerenciarTarefas } from "@/components/GerenciarTarefas";
@@ -14,11 +15,12 @@ type Props = {
   criarMeta(meta: Prisma.MetaCreateInput): Promise<"success" | "failure">;
 };
 
-export function NovaMetaForm({ criarMeta }: Props) {
+export function NovaMetaForm({ criarMeta }: Props): ReactElement | null {
   const [tarefas, setTarefas] = useState<Tarefa[]>([]);
   const { userId } = useAuth();
-  const { formState, handleSubmit, register } =
+  const { formState, handleSubmit, register, reset } =
     useForm<Prisma.MetaCreateInput>();
+  const router = useRouter();
 
   const action: SubmitHandler<Prisma.MetaCreateInput> = async (data) => {
     const resultadoCriarMeta = await criarMeta({
@@ -34,6 +36,9 @@ export function NovaMetaForm({ criarMeta }: Props) {
     if (resultadoCriarMeta === "success") {
       // Mostrar Toast de Sucesso
       toast("Meta Criada!", { type: "success" });
+
+      reset();
+      router.push("/minhas-metas");
     } else {
       // Mostrar Toast de Falha
       toast("Não foi possível criar esta Meta.", { type: "error" });

@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, ReactElement } from "react";
 import { ToastContainer } from "react-toastify";
 import { ptBR } from "@clerk/localizations";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -17,7 +17,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: PropsWithChildren) {
+export default function RootLayout({
+  children,
+}: PropsWithChildren): ReactElement | null {
   return (
     <ClerkProvider localization={ptBR}>
       <html lang="pt-BR">

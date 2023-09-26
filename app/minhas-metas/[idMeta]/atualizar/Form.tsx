@@ -1,8 +1,9 @@
 "use client";
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { Prisma, Tarefa } from "@prisma/client";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/Button";
 import { GerenciarTarefas } from "@/components/GerenciarTarefas";
@@ -10,6 +11,7 @@ import { Input } from "@/components/Input";
 import { Textarea } from "@/components/Textarea";
 
 import { Meta as PMeta } from ".prisma/client";
+
 interface Meta extends PMeta {
   tarefas?: Tarefa[];
 }
@@ -17,9 +19,18 @@ interface Meta extends PMeta {
 type Props = {
   meta: Meta;
   atualizarMeta(meta: Prisma.MetaUpdateInput): Promise<"success" | "failure">;
+  carregarMeta(
+    idMeta: string,
+    comRelacoes?: boolean
+  ): Promise<Meta | undefined>;
 };
 
-export function AtualizarMetaForm({ atualizarMeta, meta }: Props) {
+export function AtualizarMetaForm({
+  atualizarMeta,
+  carregarMeta,
+  meta,
+}: Props): ReactElement | null {
+  const router = useRouter();
   const [tarefas, setTarefas] = useState<Tarefa[]>(meta.tarefas ?? []);
   const { formState, handleSubmit, register } = useForm<Prisma.MetaUpdateInput>(
     {
@@ -48,6 +59,26 @@ export function AtualizarMetaForm({ atualizarMeta, meta }: Props) {
       });
     }
 
+    for (const tarefa of tarefas) {
+      delete tarefa.id_meta;
+      await atualizarMeta({
+        id: meta.id,
+        tarefas: {
+          upsert: {
+            where: {
+              id: tarefa.id,
+            },
+            update: {
+              ...tarefa,
+            },
+            create: {
+              ...tarefa,
+            },
+          },
+        },
+      });
+    }
+
     const resultadoAtualizarMeta = await atualizarMeta({
       ...data,
     });
@@ -55,6 +86,14 @@ export function AtualizarMetaForm({ atualizarMeta, meta }: Props) {
     if (resultadoAtualizarMeta === "success") {
       // Mostrar Toast de Sucesso
       toast("Meta Atualizada!", { type: "success" });
+
+      const metaAtualizada = await carregarMeta(meta.id, true);
+
+      if (metaAtualizada) {
+        meta = metaAtualizada;
+      }
+
+      router.push(`/minhas-metas/${meta.id}`);
     } else {
       // Mostrar Toast de Falha
       toast("Não foi possível atualizar esta Meta.", { type: "error" });

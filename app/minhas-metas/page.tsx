@@ -1,17 +1,24 @@
+import { ReactElement } from "react";
 import { auth } from "@clerk/nextjs";
-import { ArrowRight } from "lucide-react";
+import { AlertTriangle, ArrowRight, Plus } from "lucide-react";
 import Link from "next/link";
 
 import { carregarMetas } from "@/app/minhas-metas/carregarMetas";
+import { Button } from "@/components/Button";
 import { PageLayout } from "@/components/PageLayout";
 
-export default async function Page() {
+export default async function Page(): Promise<ReactElement | null> {
   const { userId } = auth();
   const metas = await carregarMetas(userId);
 
   return (
     <PageLayout>
-      <h1 className="text-center text-4xl text-primary-400">Minhas Metas</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-center text-4xl text-primary-400">Minhas Metas</h1>
+        <Link href={`/nova-meta`}>
+          <Button LeftIcon={Plus}>Nova Meta</Button>
+        </Link>
+      </div>
 
       {metas && metas.length > 0 ? (
         <ul className="flex flex-col gap-3">
@@ -36,7 +43,10 @@ export default async function Page() {
           ))}
         </ul>
       ) : (
-        <p>Vazio</p>
+        <div className="flex flex-col items-center gap-2">
+          <AlertTriangle className="min-h-[2.5rem] min-w-[2.5rem] text-orange-400" />
+          <p className="text-xl font-medium">Não há Metas cadastradas</p>
+        </div>
       )}
     </PageLayout>
   );

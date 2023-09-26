@@ -1,3 +1,5 @@
+import { ReactElement } from "react";
+
 import { carregarMeta } from "@/app/minhas-metas/[idMeta]/carregarMeta";
 import { PageLayout } from "@/components/PageLayout";
 
@@ -8,7 +10,7 @@ export default async function Page({
   params,
 }: {
   params: { idMeta: string };
-}): JSX.Element {
+}): Promise<ReactElement | null> {
   const meta = await carregarMeta(params.idMeta, true);
 
   if (!meta) {
@@ -22,7 +24,11 @@ export default async function Page({
   return (
     <PageLayout>
       <h1 className="text-center text-4xl text-primary-400">Atualizar Meta</h1>
-      <AtualizarMetaForm atualizarMeta={atualizarMeta} meta={meta} />
+      <AtualizarMetaForm
+        atualizarMeta={atualizarMeta}
+        carregarMeta={carregarMeta}
+        meta={meta}
+      />
     </PageLayout>
   );
 }
