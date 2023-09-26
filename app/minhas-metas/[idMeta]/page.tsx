@@ -15,6 +15,15 @@ export default async function Page({
 }): Promise<ReactElement | null> {
   const meta = await carregarMeta(params.idMeta, true);
 
+  const quantidadeTarefasConcluidas = meta.tarefas.filter(
+    (t) => t.status === "CONCLUIDO"
+  ).length;
+
+  const progresso =
+    quantidadeTarefasConcluidas > 0
+      ? (quantidadeTarefasConcluidas / meta.tarefas.length) * 100
+      : 0;
+
   if (!meta) {
     return (
       <PageLayout>
@@ -41,6 +50,20 @@ export default async function Page({
           <b>Descrição</b>:{" "}
           {meta.descricao.length > 0 ? meta.descricao : "Sem Descrição"}
         </p>
+      </div>
+
+      <div className="flex flex-col gap-3">
+        <h2 className="text-2xl font-bold text-primary-500">
+          Progressão ({quantidadeTarefasConcluidas} de {meta.tarefas.length}{" "}
+          concluídas)
+        </h2>
+        <progress
+          className="h-7 w-full border border-primary-400"
+          max="100"
+          value={progresso}
+        >
+          {progresso}%
+        </progress>
       </div>
 
       <div className="flex flex-col gap-3">

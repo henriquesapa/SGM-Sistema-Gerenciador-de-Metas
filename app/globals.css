@@ -5,3 +5,21 @@
 .Toastify__toast-container {
     margin-top: 5rem;
 }
+
+/* Progress HTML Element Chrome*/
+progress::-webkit-progress-bar {
+    @apply bg-primary-300 rounded-xl;
+}
+
+progress::-webkit-progress-value {
+    @apply transition-all duration-300 bg-primary-950 group-hover:bg-primary-50 rounded-xl;
+}
+
+/* Progress HTML Element Firefox */
+progress::-moz-progress-bar {
+    @apply transition-all duration-300 bg-primary-950 group-hover:bg-primary-50 rounded-xl;
+}
+
+progress {
+    @apply bg-primary-300 rounded-xl;
+}

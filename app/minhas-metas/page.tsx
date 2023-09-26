@@ -9,7 +9,7 @@ import { PageLayout } from "@/components/PageLayout";
 
 export default async function Page(): Promise<ReactElement | null> {
   const { userId } = auth();
-  const metas = await carregarMetas(userId);
+  const metas = await carregarMetas(userId, true);
 
   return (
     <PageLayout>
@@ -22,25 +22,44 @@ export default async function Page(): Promise<ReactElement | null> {
 
       {metas && metas.length > 0 ? (
         <ul className="flex flex-col gap-3">
-          {metas.map((meta) => (
-            <Link
-              className="group transition-all duration-300 hover:opacity-75"
-              key={meta.id}
-              href={`/minhas-metas/${meta.id}`}
-            >
-              <div className="flex w-full items-center justify-between gap-3 rounded-lg border border-primary-600 p-3 transition-all duration-300 group-hover:bg-primary-600">
-                <div className="flex flex-col gap-2">
-                  <h3 className="line-clamp-1 text-xl font-semibold text-primary-500 transition-all duration-300 group-hover:text-primary-50">
-                    {meta.titulo}
-                  </h3>
-                  <span className="line-clamp-2 transition-all duration-300 group-hover:text-white">
-                    {meta.descricao}
-                  </span>
+          {metas.map((meta) => {
+            const quantidadeTarefasConcluidas = meta.tarefas.filter(
+              (t) => t.status === "CONCLUIDO"
+            ).length;
+
+            const progresso =
+              quantidadeTarefasConcluidas > 0
+                ? (quantidadeTarefasConcluidas / meta.tarefas.length) * 100
+                : 0;
+
+            return (
+              <Link
+                className="group transition-all duration-300 hover:opacity-75"
+                key={meta.id}
+                href={`/minhas-metas/${meta.id}`}
+              >
+                <div className="flex w-full justify-between gap-3 rounded-lg border border-primary-600 p-3 transition-all duration-300 group-hover:bg-primary-600">
+                  <div className="flex w-full flex-col gap-2">
+                    <h3 className="line-clamp-1 text-xl font-semibold text-primary-500 transition-all duration-300 group-hover:text-primary-50">
+                      {meta.titulo}
+                    </h3>
+                    <span className="line-clamp-2 transition-all duration-300 group-hover:text-white">
+                      {meta.descricao}
+                    </span>
+
+                    <progress
+                      className="h-7 w-full border border-primary-400"
+                      max="100"
+                      value={progresso}
+                    >
+                      {progresso}%
+                    </progress>
+                  </div>
+                  <ArrowRight className="mt-auto min-h-[1.75rem] min-w-[1.75rem] text-primary-600 transition-all duration-300 group-hover:text-primary-50" />
                 </div>
-                <ArrowRight className="min-h-[1.75rem] min-w-[1.75rem] text-primary-600 transition-all duration-300 group-hover:text-primary-50" />
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </ul>
       ) : (
         <div className="flex flex-col items-center gap-2">
