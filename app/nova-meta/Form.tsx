@@ -48,6 +48,7 @@ export function NovaMetaForm({ criarMeta }: Props): ReactElement | null {
   return (
     <form
       className="mx-auto flex w-full max-w-2xl flex-col gap-2"
+      data-testid="NovaMetaForm"
       onSubmit={handleSubmit(action)}
     >
       <Input label="Título*" {...register("titulo", { required: true })} />

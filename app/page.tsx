@@ -1,3 +1,5 @@
+import { ReactElement } from "react";
+
 import { PageLayout } from "@/components/PageLayout";
 
 export default function Home(): ReactElement | null {
