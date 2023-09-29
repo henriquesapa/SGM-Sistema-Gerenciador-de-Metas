@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Meta, Prisma } from "@prisma/client";
 import { render, screen, within } from "@testing-library/react";
 import { v4 as uuidv4 } from "uuid";
 import { describe, expect, test, vi } from "vitest";
@@ -85,5 +85,27 @@ describe("Página de Nova Meta", () => {
     const resultadoCriarMeta = await criarMeta(novaMeta);
 
     expect(resultadoCriarMeta).toStrictEqual("success");
+  });
+
+  test("Autenticado: NÃO deve criar nova Meta sem passar os dados da Meta", async () => {
+    vi.mock("@clerk/nextjs", () => {
+      return {
+        auth: () => new Promise((resolve) => resolve({ userId: "fefsfehrf" })),
+        ClerkProvider: ({ children }) => <div>{children}</div>,
+        useAuth: () => ({
+          isSignedIn: true,
+          user: {
+            id: "user_8JkL2mP0zX6d8JkL2mP0zX6dJ",
+            fullName: "Thrall Durotan",
+          },
+        }),
+      };
+    });
+
+    prisma.meta.create.mockResolvedValue({} as Meta);
+
+    const resultadoCriarMeta = await criarMeta({} as Meta);
+
+    expect(resultadoCriarMeta).toStrictEqual("failure");
   });
 });
