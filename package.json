@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "vitest --ui"
+    "test": "vitest --ui",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@clerk/localizations": "^1.25.2",
@@ -49,6 +50,7 @@
     "eslint-config-next": "13.4.19",
     "jsdom": "^22.1.0",
     "postcss": "8.4.29",
+    "postinstall-postinstall": "^2.1.0",
     "prisma": "^5.3.1",
     "prisma-markdown": "^1.0.0",
     "typescript": "5.2.2",
