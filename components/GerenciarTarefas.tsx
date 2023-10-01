@@ -1,5 +1,5 @@
 "use client";
-import { Dispatch, SetStateAction } from "react";
+import { SetStateAction } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 import { Tarefa } from "@prisma/client";
 import dayjs from "dayjs";
