@@ -1,6 +1,6 @@
 "use client";
 import { SetStateAction } from "react";
-import Datepicker from "react-tailwindcss-datepicker";
+import Datepicker, { DateValueType } from "react-tailwindcss-datepicker";
 import { Tarefa } from "@prisma/client";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
@@ -17,7 +17,7 @@ dayjs.locale("pt-br");
 
 interface Props {
   tarefas: Tarefa[];
-  setTarefas(props: SetStateAction<Tarefa[]>): void;
+  setTarefas(props: SetStateAction<Partial<Tarefa>[]>): void;
 }
 
 export function GerenciarTarefas({ tarefas, setTarefas }: Props) {
@@ -32,12 +32,18 @@ export function GerenciarTarefas({ tarefas, setTarefas }: Props) {
   function atualizarTarefa(id: string, chave: keyof Tarefa, valor: any) {
     const lista = [...tarefas];
     const tarefa = lista.find((t) => t.id === id);
-    tarefa[chave] = valor;
+    if (tarefa) {
+      tarefa[chave] = valor;
+    }
 
     setTarefas(lista);
   }
 
-  const handleValueChange = (id: string, { startDate, endDate }) => {
+  const handleValueChange = (
+    id: string,
+    // @ts-ignore
+    { startDate, endDate }: DateValueType
+  ) => {
     atualizarTarefa(id, "inicio", dayjs(startDate).utc().toDate());
     atualizarTarefa(id, "fim", dayjs(endDate).utc().toDate());
   };
@@ -70,8 +76,7 @@ export function GerenciarTarefas({ tarefas, setTarefas }: Props) {
                 onChange={(e) =>
                   atualizarTarefa(tarefa.id, "descricao", e.target.value)
                 }
-                value={tarefa.descricao}
-                type="text"
+                value={tarefa.descricao ?? ""}
               />
 
               <div className="flex flex-col gap-y-0.5">
